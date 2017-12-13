@@ -1,0 +1,48 @@
+(defconst sk-org-packages'(org))
+
+(defun sk-org/post-init-org()
+  ;; Set org-directory
+  (setq org-directory "~/Dropbox/Org/")
+
+  ;; Set up GTD
+  (defvar collection-bucket "~/Dropbox/Org/organizer/capture.org")
+  (setq org-default-notes-file "~/Dropbox/Org/notes.org")
+
+  (setq org-capture-templates
+        '(("c" "Templates for collecting thoughts and ideas")
+          ("ca" "Articles/Links" entry (file+headline collection-bucket "Articles/Links")
+           "* [[%^{Link}][%^{Description}]]\n:PROPERTIES:\n:CapturedOn:   %t\n:END:" :immediate-finish t)
+          ("cb" "Books" entry (file+headline collection-bucket "Books")
+           "* Read %^{Book}, by %^{Author}\n:PROPERTIES:\n:CapturedOn:   %t\n:END:" :immediate-finish t)
+          ("cc" "College" entry (file+headline collection-bucket "College")
+           "* %?\n:PROPERTIES:\n:CapturedOn:   %t\n:END:")
+          ("cd" "Dreams" entry (file+headline collection-bucket "Dreams")
+           "* %?\n:PROPERTIES:\n:CapturedOn:   %t\n:END:")
+          ("cf" "Food and restaurants" entry (file+headline collection-bucket "Food/Restaurants")
+           "* %?\n:PROPERTIES:\n:CapturedOn:   %t\n:END:")
+          ("cg" "Goals" entry (file+headline collection-bucket "Goals")
+           "* %?\n:PROPERTIES:\n:CapturedOn:   %t\n:END:")
+          ("ch" "Habits" entry (file+headline collection-bucket "Habits")
+           "* %?\n:PROPERTIES:\n:CapturedOn:   %t\n:END:")
+          ("ci" "Ideas" entry (file+headline collection-bucket "Ideas")
+           "* %?\n:PROPERTIES:\n:CapturedOn:   %t\n:END:")
+          ("cl" "Learn" entry (file+headline collection-bucket "Learn")
+           "* %^{Learn}\n:PROPERTIES:\n:CapturedOn:   %t\n:END:")
+          ("cm" "Movies" entry (file+headline collection-bucket "Movies")
+           "* Watch %^{Watch}\n:PROPERTIES:\n:CapturedOn:   %t\n:END:" :immediate-finish t)
+          ("co" "Others" entry (file+headline collection-bucket "Others")
+           "* %?\n:PROPERTIES:\n:CapturedOn:   %t\n:END:")
+          ("cp" "Purchase" entry (file+headline collection-bucket "Purchase")
+           "* Buy %^{Buy}\n:PROPERTIES:\n:CapturedOn:   %t\n:END:")
+          ("ct" "TV series/Anime" entry (file+headline collection-bucket "TV series/Anime")
+           "* Watch %^{Watch}\n:PROPERTIES:\n:CapturedOn:   %t\n:END:" :immediate-finish t)
+          ("cv" "Videos" entry (file+headline collection-bucket "Videos")
+           "* [[%^{Link}][%^{Description}]]\n:PROPERTIES:\n:CapturedOn:   %t\n:END:" :immediate-finish t)
+          ("cw" "Work" entry (file+headline collection-bucket "Work")
+           "* %?\n:PROPERTIES:\n:CapturedOn:   %t\n:END:")
+          ("t" "Todo" entry (file+headline collection-bucket "Tasks")
+           "* TODO %?\n  %i\n  %a\n:PROPERTIES:\n:CapturedOn:   %t\n:END:")))
+
+  (spacemacs/set-leader-keys "oc" #'org-capture)
+
+  )
